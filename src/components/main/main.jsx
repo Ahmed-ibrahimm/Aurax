@@ -138,7 +138,7 @@ const Main = () => {
                       });
                       setOutputText(response.text);
                     } catch {
-                      setOutputText(" Error");
+                      setOutputText(" Error, you have reached your limit of questions.");
                       setContentState(false);
                     } finally {
                       setLoading(false);

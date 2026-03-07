@@ -7,7 +7,29 @@ import "./main.css";
 import { assets } from "../../assets/assets/assets";
 
 // the apikey used from google gemini
-const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+const apiKeys = [
+  import.meta.env.VITE_API_KEY_1,
+  import.meta.env.VITE_API_KEY_2,
+  import.meta.env.VITE_API_KEY_3,
+  import.meta.env.VITE_API_KEY_4,
+  import.meta.env.VITE_API_KEY_5,
+  import.meta.env.VITE_API_KEY_6,
+  import.meta.env.VITE_API_KEY_7,
+  import.meta.env.VITE_API_KEY_8,
+  import.meta.env.VITE_API_KEY_9,
+  import.meta.env.VITE_API_KEY_10,
+];
+
+let currentKeyIndex = 0;
+
+function getNextApiKey() {
+  const key = apiKeys[currentKeyIndex];
+
+  currentKeyIndex = (currentKeyIndex + 1) % apiKeys.length;
+
+  return key;
+}
+const apiKey =  getNextApiKey();
 const ai = new GoogleGenAI({ apiKey });
 
 /* start the main part of the page consists of the navigation bar contains the logo and photo 
@@ -132,10 +154,10 @@ const Main = () => {
                     setLoading(true);
                     setContentState(true);
                     try {
-                      const response = await ai.models.generateContent({
+                      const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${apiKey}` ,ai.models.generateContent({
                         model: "gemini-3-flash-preview",
                         contents: inputValue,
-                      });
+                      }));
                       setOutputText(response.text);
                     } catch {
                       setOutputText(" Error, you have reached your limit of questions.");

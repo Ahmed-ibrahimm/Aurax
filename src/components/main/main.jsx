@@ -7,7 +7,7 @@ import "./main.css";
 import { assets } from "../../assets/assets/assets";
 
 // the apikey used from google gemini
-const apiKey =  import.meta.env.VITE_API_KEY_7;
+const apiKey =  import.meta.env.VITE_API_KEY_1;
 const ai = new GoogleGenAI({ apiKey });
 
 /* start the main part of the page consists of the navigation bar contains the logo and photo 

@@ -24,8 +24,8 @@ const Main = () => {
 
   useEffect(() => {
     if (!outputText) return;
-    setDisplayText("");
-    let i = 0;
+    setDisplayText(" ");
+    let i = -1;
     const interval = setInterval(() => {
       setDisplayText((prev) => prev + outputText.charAt(i));
       i++;
